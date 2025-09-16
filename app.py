@@ -11,7 +11,7 @@ class TextAvatarGenerator:
         self.default_width = 200
         self.default_height = 200
         self.bg_colors = ["#FF5733", "#33FF57", "#5733FF", "#FFC300", "#C70039", "#900C3F"]
-        self.font_path = os.path.join(os.getcwd(), 'fonts', 'avaterra.otf')  # Update path as necessary
+        self.font_path = os.path.join(os.getcwd(), 'fonts', 'MonooLogo-rvK0x.ttf')  # Update path as necessary
 
     def generate_avatar(self, text="Avatar", output_path="generated/generated_avatar.png", width=200, height=200):
         # If width or height is missing, make the image square
@@ -36,12 +36,13 @@ class TextAvatarGenerator:
         font_size = self.get_font_size(text, width, height)
         font = ImageFont.truetype(self.font_path, font_size)
 
-        # Calculate the size of the text to be drawn using textbbox instead of textsize
+        # Calculate the size of the text to be drawn using textbbox
         bbox = draw.textbbox((0, 0), text, font=font)
         text_width = bbox[2] - bbox[0]
         text_height = bbox[3] - bbox[1]
 
         # Calculate position to center the text
+        # Ensure to use integer division for proper pixel placement
         text_position = ((width - text_width) // 2, (height - text_height) // 2)
 
         # Draw the text
@@ -54,7 +55,7 @@ class TextAvatarGenerator:
         """
         Adjust the font size based on the size of the image.
         """
-        base_font_size = int(min(width, height) / 5)  # Font size is proportional to the image size
+        base_font_size = int(min(width, height) / 3)  # Font size is proportional to the image size
 
         # Adjust the font size based on the length of the text
         text_length = len(text)
