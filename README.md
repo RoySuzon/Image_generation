@@ -24,11 +24,24 @@ This is a simple Flask application that generates text-based avatars. You can cu
     ```bash
     git clone https://github.com/roysuzon/image_generation.git
     ```
-2.  Install the dependencies:
+2.  Create and activate a virtual environment:
+
+    *   **On Windows:**
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
+
+    *   **On macOS/Linux:**
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+3.  Install the dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-3.  Run the application:
+4.  Run the application:
     ```bash
     python app.py
     ```
