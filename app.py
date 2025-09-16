@@ -11,7 +11,7 @@ class TextAvatarGenerator:
         self.default_width = 200
         self.default_height = 200
         self.bg_colors = ["#FF5733", "#33FF57", "#5733FF", "#FFC300", "#C70039", "#900C3F"]
-        self.font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Adjust as needed for the Docker container
+        self.font_path = os.path.join(os.getcwd(), 'fonts', 'avaterra.otf')  # Update path as necessary
 
     def generate_avatar(self, text="Avatar", output_path="generated/generated_avatar.png", width=200, height=200):
         # If width or height is missing, make the image square
@@ -36,8 +36,10 @@ class TextAvatarGenerator:
         font_size = self.get_font_size(text, width, height)
         font = ImageFont.truetype(self.font_path, font_size)
 
-        # Calculate the size of the text to be drawn
-        text_width, text_height = draw.textsize(text, font=font)
+        # Calculate the size of the text to be drawn using textbbox instead of textsize
+        bbox = draw.textbbox((0, 0), text, font=font)
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
 
         # Calculate position to center the text
         text_position = ((width - text_width) // 2, (height - text_height) // 2)
@@ -85,7 +87,7 @@ def generate_avatar():
 
     # Auto adjust width and height to make the avatar square if one of them is missing
     if width is None and height is None:
-        width, height = self.default_width, self.default_height
+        width, height = 200, 200  # default dimensions
     elif width is None:
         width = height
     elif height is None:
