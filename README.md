@@ -22,7 +22,7 @@ This is a simple Flask application that generates text-based avatars. You can cu
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/roysuzon/image-generation.git
+    git clone https://github.com/roysuzon/image_generation.git
     ```
 2.  Install the dependencies:
     ```bash
